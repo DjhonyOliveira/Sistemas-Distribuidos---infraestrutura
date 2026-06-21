@@ -21,7 +21,7 @@ resource "aws_instance" "k3s_worker" {
   count                  = 2
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t3.medium"
-  subnet_id              = aws_subnet.private_subnet_1.id
+  subnet_id              = aws_subnet.public_subnet_1.id
   vpc_security_group_ids = [aws_security_group.k3s_sg.id]
   key_name               = aws_key_pair.k3s_key.key_name
   iam_instance_profile   = "LabInstanceProfile"

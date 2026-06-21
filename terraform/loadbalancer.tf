@@ -30,6 +30,12 @@ resource "aws_lb_target_group_attachment" "worker_attachment" {
   port             = 30443
 }
 
+resource "aws_lb_target_group_attachment" "master_attachment_https" {
+  target_group_arn = aws_lb_target_group.k3s_http_tg.arn
+  target_id        = aws_instance.k3s_master.id
+  port             = 30443
+}
+
 output "load_balancer_dns" {
   value       = aws_lb.k3s_nlb.dns_name
   description = "DNS do cluster para apontar domínios"
@@ -57,5 +63,11 @@ resource "aws_lb_target_group_attachment" "backend_worker_attachment" {
   count            = 2
   target_group_arn = aws_lb_target_group.backend_tg.arn
   target_id        = aws_instance.k3s_worker[count.index].id
+  port             = 30080
+}
+
+resource "aws_lb_target_group_attachment" "master_backend_attachment" {
+  target_group_arn = aws_lb_target_group.backend_tg.arn
+  target_id        = aws_instance.k3s_master.id
   port             = 30080
 }
