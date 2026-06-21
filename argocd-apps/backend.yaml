@@ -86,6 +86,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
+  - host: k3s-nlb-c6bf9cd6d6bba31d.elb.us-east-1.amazonaws.com
   - http:
       paths:
       - path: /docs
