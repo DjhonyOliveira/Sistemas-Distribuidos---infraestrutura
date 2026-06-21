@@ -5,7 +5,7 @@ resource "kubernetes_manifest" "argocd_application" {
     apiVersion = "argoproj.io/v1alpha1"
     kind       = "Application"
     metadata = {
-      name      = "my-app-stack"
+      name      = "bilheteria-park"
       namespace = "argocd"
     }
     spec = {
