@@ -74,4 +74,31 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8000
-      NodePort: 30080
+      nodePort: 30080
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backend-ingress
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /docs
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 80
+
+      - path: /health
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 80
