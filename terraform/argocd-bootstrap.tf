@@ -1,7 +1,7 @@
-resource "kubernetes_manifest" "argocd_application" {
+resource "kubectl_manifest" "argocd_application" {
   depends_on = [helm_release.argocd]
 
-  manifest = {
+  yaml_body = yamlencode({
     apiVersion = "argoproj.io/v1alpha1"
     kind       = "Application"
     metadata = {
@@ -10,18 +10,18 @@ resource "kubernetes_manifest" "argocd_application" {
     }
     spec = {
       project = "default"
-      
+
       source = {
         repoURL        = "https://github.com/DjhonyOliveira/Sistemas-Distribuidos---infraestrutura.git"
         targetRevision = "HEAD"
         path           = "argocd-apps"
       }
-      
+
       destination = {
         server    = "https://kubernetes.default.svc"
         namespace = "default"
       }
-      
+
       syncPolicy = {
         automated = {
           prune    = true
@@ -30,5 +30,5 @@ resource "kubernetes_manifest" "argocd_application" {
         syncOptions = ["CreateNamespace=true"]
       }
     }
-  }
+  })
 }

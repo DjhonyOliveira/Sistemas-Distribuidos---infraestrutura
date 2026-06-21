@@ -14,6 +14,8 @@ resource "aws_instance" "k3s_master" {
   vpc_security_group_ids = [aws_security_group.k3s_sg.id]
   key_name               = aws_key_pair.k3s_key.key_name
 
+  depends_on = [aws_route_table_association.public_1]
+
   tags = { Name = "k3s-master" }
 }
 

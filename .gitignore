@@ -6,3 +6,4 @@
 
 kubeconfig.yaml
 node-token
+traefik-config.yaml

@@ -18,4 +18,16 @@ resource "helm_release" "argocd" {
     name  = "server.service.type"
     value = "NodePort"
   }
+
+  # NodePorts fixos e DIFERENTES dos usados pelo Traefik (30080/30443),
+  # para não haver colisão de tráfego entre app e ArgoCD.
+  set {
+    name  = "server.service.nodePortHttp"
+    value = "30880"
+  }
+
+  set {
+    name  = "server.service.nodePortHttps"
+    value = "30943"
+  }
 }

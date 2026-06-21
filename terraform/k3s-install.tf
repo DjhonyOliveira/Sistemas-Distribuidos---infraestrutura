@@ -1,5 +1,25 @@
+resource "local_file" "traefik_helm_config" {
+  filename = "${path.module}/traefik-config.yaml"
+  content  = <<-EOT
+    apiVersion: helm.cattle.io/v1
+    kind: HelmChartConfig
+    metadata:
+      name: traefik
+      namespace: kube-system
+    spec:
+      valuesContent: |-
+        service:
+          type: NodePort
+        ports:
+          web:
+            nodePort: 30080
+          websecure:
+            nodePort: 30443
+  EOT
+}
+
 resource "null_resource" "install_master" {
-  depends_on = [aws_instance.k3s_master]
+  depends_on = [aws_instance.k3s_master, local_file.traefik_helm_config]
 
   connection {
     type        = "ssh"
@@ -8,8 +28,15 @@ resource "null_resource" "install_master" {
     host        = aws_instance.k3s_master.public_ip
   }
 
+  provisioner "file" {
+    source      = local_file.traefik_helm_config.filename
+    destination = "/tmp/traefik-config.yaml"
+  }
+
   provisioner "remote-exec" {
     inline = [
+      "sudo mkdir -p /var/lib/rancher/k3s/server/manifests",
+      "sudo mv /tmp/traefik-config.yaml /var/lib/rancher/k3s/server/manifests/traefik-config.yaml",
       "curl -sfL https://get.k3s.io | sh -",
       "sleep 10",
       "sudo chmod 644 /etc/rancher/k3s/k3s.yaml"
@@ -43,7 +70,7 @@ resource "null_resource" "install_workers" {
     user        = "ubuntu"
     private_key = file("~/.ssh/id_rsa")
     host        = aws_instance.k3s_worker[count.index].private_ip
-    
+
     bastion_host        = aws_instance.k3s_master.public_ip
     bastion_user        = "ubuntu"
     bastion_private_key = file("~/.ssh/id_rsa")

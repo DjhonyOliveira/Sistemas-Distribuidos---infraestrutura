@@ -16,6 +16,10 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "~> 2.24" 
     }
+    kubectl = {
+      source  = "gavinbunney/kubectl"
+      version = "~> 1.14"
+    }
   }
 }
 
@@ -26,4 +30,10 @@ provider "aws" {
 provider "kubernetes" {
   config_path = "./kubeconfig.yaml"
   insecure    = true
+}
+
+provider "kubectl" {
+  config_path      = "./kubeconfig.yaml"
+  load_config_file = true
+  insecure         = true
 }
