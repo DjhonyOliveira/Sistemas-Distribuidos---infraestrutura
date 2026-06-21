@@ -10,7 +10,7 @@ resource "aws_db_instance" "postgres" {
   instance_class         = "db.t3.micro"
   allocated_storage      = 20
   
-  db_name                = "bilheteria-park"
+  db_name                = "bilheteriapark"
   username               = "bilheteria"
   password               = "bilheteria123!"
   
