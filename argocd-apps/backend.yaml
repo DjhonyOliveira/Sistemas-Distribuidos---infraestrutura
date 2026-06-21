@@ -75,7 +75,6 @@ spec:
       targetPort: 8000
 
 ---
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -86,8 +85,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-  - host: k3s-nlb-c6bf9cd6d6bba31d.elb.us-east-1.amazonaws.com
-    http:
+  - http:
       paths:
       - path: /docs
         pathType: Prefix
