@@ -36,7 +36,7 @@ spec:
 
         env:
           - name: BACKEND_URL
-            value: "http://backend-service"
+            value: "http://k3s-nlb-2c251c4d172fed16.elb.us-east-1.amazonaws.com"
 
           - name: NODE_ENV
             value: "production"
