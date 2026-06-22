@@ -60,7 +60,7 @@ spec:
 
           - name: ADMIN_USERNAME
             value: "admin"
-            
+
           - name: ADMIN_PASSWORD
             value: "teste123"
           
@@ -94,6 +94,34 @@ spec:
   rules:
   - http:
       paths:
+      - path: /auth
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 80
+      - path: /admin
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 80
+      - path: /eventos
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 80
+      - path: /compras
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 80
       - path: /docs
         pathType: Prefix
         backend:
