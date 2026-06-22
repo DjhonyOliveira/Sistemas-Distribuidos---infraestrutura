@@ -23,7 +23,7 @@ spec:
         
         env:
           - name: BACKEND_URL
-            value: "k3s-nlb-50370400934167b3.elb.us-east-1.amazonaws.com"
+            value: "http://k3s-nlb-50370400934167b3.elb.us-east-1.amazonaws.com"
             
         resources:
           requests:
