@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: djhony/bilheteria-park-backend:latest
+        image: marcusedemarchi/bilheteria-park-back:latest
         ports:
         - containerPort: 8000
         

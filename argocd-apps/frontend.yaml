@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: djhony/bilheteria-park-frontend:latest 
+        image: marcusedemarchi/bilheteria-park-front:latest 
         ports:
         - containerPort: 80
         
