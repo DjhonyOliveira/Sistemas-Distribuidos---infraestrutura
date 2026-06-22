@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,30 +17,21 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: djhony/bilheteria-park-frontend:latest
+        image: djhony/bilheteria-park-frontend:latest 
         ports:
-        - containerPort: 3000
-
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 15
-          periodSeconds: 15
-
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 3000
-          initialDelaySeconds: 10
-          periodSeconds: 10
-
+        - containerPort: 80
+        
         env:
           - name: BACKEND_URL
             value: "http://k3s-nlb-2c251c4d172fed16.elb.us-east-1.amazonaws.com"
-
-          - name: NODE_ENV
-            value: "production"
+            
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
 
 ---
 apiVersion: v1
@@ -52,7 +44,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 3000
+      targetPort: 80
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -62,10 +54,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
     traefik.ingress.kubernetes.io/router.tls: "false"
-    # Prioridade MENOR que o backend (100) para que as rotas
-    traefik.ingress.kubernetes.io/router.priority: "10"
+    traefik.ingress.kubernetes.io/router.priority: "50" 
 spec:
-  ingressClassName: traefik
   rules:
   - http:
       paths:
