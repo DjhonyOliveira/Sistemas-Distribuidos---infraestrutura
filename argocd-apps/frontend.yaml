@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: marcusedemarchi/bilheteria-park-front:1.0 
+        image: marcusedemarchi/bilheteria-park-front:1.1
         ports:
         - containerPort: 80
         
