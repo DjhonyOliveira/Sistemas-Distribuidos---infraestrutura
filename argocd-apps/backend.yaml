@@ -57,6 +57,12 @@ spec:
 
           - name: REDIS_URL
             value: "redis://k3s-redis.xxxxxx.cache.amazonaws.com:6379/0"
+
+          - name: ADMIN_USERNAME
+            value: "admin"
+            
+          - name: ADMIN_PASSWORD
+            value: "teste123"
           
           - name: LOG_LEVEL
             value: "INFO"
