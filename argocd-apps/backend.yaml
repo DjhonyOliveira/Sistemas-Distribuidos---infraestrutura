@@ -42,6 +42,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: db-credentials-secret
+
                 key: host
           - name: DB_NAME
             valueFrom:
@@ -68,7 +69,7 @@ spec:
             value: "INFO"
 
           - name: IP_FRONT
-            value: "http://k3s-nlb-50370400934167b3.elb.us-east-1.amazonaws.com"
+            value: "http://k3s-nlb-dff2b3d5b5104472.elb.us-east-1.amazonaws.com"
 
 ---
 apiVersion: v1
