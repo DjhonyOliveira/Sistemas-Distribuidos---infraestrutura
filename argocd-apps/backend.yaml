@@ -83,12 +83,9 @@ spec:
           - name: LOG_LEVEL
             value: "INFO"
 
-<<<<<<< HEAD
-=======
           - name: AWS_REGION
             value: us-east-1
 
->>>>>>> 19c27b8 (secrets)
 ---
 apiVersion: v1
 kind: Service
