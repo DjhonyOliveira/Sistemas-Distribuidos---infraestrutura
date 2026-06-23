@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: marcusedemarchi/bilheteria-park-back:1.0
+        image: marcusedemarchi/bilheteria-park-back:1.4
         ports:
         - containerPort: 8000
         
