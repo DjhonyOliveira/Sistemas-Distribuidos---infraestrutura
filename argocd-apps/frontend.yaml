@@ -6,7 +6,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: frontend
@@ -20,6 +20,13 @@ spec:
         image: marcusedemarchi/bilheteria-park-front:1.0
         ports:
         - containerPort: 80
+
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 10
         
         env:
           - name: BACKEND_URL
