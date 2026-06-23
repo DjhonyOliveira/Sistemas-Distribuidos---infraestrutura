@@ -50,7 +50,7 @@ spec:
                 key: dbname
           
           - name: DATABASE_URL
-            value: "k3s-postgres-db.c7ac2q0iup8d.us-east-1.rds.amazonaws.com:5432"
+            value: "postgresql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):5432/$(DB_NAME)"
             
           - name: AWS_SQS_QUEUE_URL
             value: "https://sqs.us-east-1.amazonaws.com/SEU_ID_DE_CONTA/nome-da-sua-fila"
@@ -66,9 +66,6 @@ spec:
           
           - name: LOG_LEVEL
             value: "INFO"
-
-          - name: IP_FRONT
-            value: "http://k3s-nlb-dff2b3d5b5104472.elb.us-east-1.amazonaws.com"
 
 ---
 apiVersion: v1
