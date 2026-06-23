@@ -23,7 +23,7 @@ spec:
         
         env:
           - name: BACKEND_URL
-            value: "http://k3s-nlb-dff2b3d5b5104472.elb.us-east-1.amazonaws.com"
+            value: "http://backend-service"
             
         resources:
           requests:
