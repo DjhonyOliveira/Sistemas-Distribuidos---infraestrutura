@@ -115,27 +115,6 @@ spec:
             name: backend-service
             port:
               number: 80
-      - path: /eventos
-        pathType: Prefix
-        backend:
-          service:
-            name: backend-service
-            port:
-              number: 80
-      - path: /compras
-        pathType: Prefix
-        backend:
-          service:
-            name: backend-service
-            port:
-              number: 80
-      - path: /admin
-        pathType: Prefix
-        backend:
-          service:
-            name: backend-service
-            port:
-              number: 80
       - path: /health
         pathType: Prefix
         backend:
