@@ -42,7 +42,6 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: db-credentials-secret
-
                 key: host
           - name: DB_NAME
             valueFrom:
