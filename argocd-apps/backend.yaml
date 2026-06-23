@@ -48,6 +48,22 @@ spec:
               secretKeyRef:
                 name: db-credentials-secret
                 key: dbname
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: aws-credentials
+                key: access_key_id
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: aws-credentials
+                key: secret_access_key
+
+          - name: AWS_SESSION_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: aws-credentials
+                key: session_token
           
           - name: DATABASE_URL
             value: "postgresql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):5432/$(DB_NAME)"
@@ -67,6 +83,12 @@ spec:
           - name: LOG_LEVEL
             value: "INFO"
 
+<<<<<<< HEAD
+=======
+          - name: AWS_REGION
+            value: us-east-1
+
+>>>>>>> 19c27b8 (secrets)
 ---
 apiVersion: v1
 kind: Service
