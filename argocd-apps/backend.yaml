@@ -69,7 +69,7 @@ spec:
             value: "postgresql://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):5432/$(DB_NAME)"
             
           - name: AWS_SQS_QUEUE_URL
-            value: "https://sqs.us-east-1.amazonaws.com/992382528010/k3s-app-queue"
+            value: "https://sqs.us-east-1.amazonaws.com/083341703320/k3s-app-queue"
 
           - name: REDIS_URL
             value: "k3s-redis.zpnhxn.0001.use1.cache.amazonaws.com"
